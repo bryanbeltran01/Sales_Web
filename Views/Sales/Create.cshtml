@@ -1,0 +1,210 @@
+﻿@model Sales_Web.Models.SaleAndProductViewModel
+
+@{
+    ViewData["Title"] = "Create Sale";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<h1 class="mb-4"> Sales Requests </h1>
+
+<div class="container">
+    <div class="row">
+        <!-- Items Selection Section -->
+        <div class="col-md-5 mb-4 p-4 border border-secondary rounded shadow-sm">
+            <h4>Select Items</h4>
+            <div class="form-group">
+                <label>Select Items to Include in the Sale:</label>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Select</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th>Available Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsTableBody">
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <td>
+                                    <i class="fa fa-plus-circle item-icon"
+                                       data-name="@product.Name"
+                                       data-price="@product.UnitPrice"
+                                       data-quantity="0"
+                                       data-available-quantity="@product.Quantity"
+                                       style="cursor: pointer; color: #007bff;"
+                                       aria-hidden="true"></i>
+                                </td>
+                                <td>@product.Name</td>
+                                <td>@product.UnitPrice.ToString("C")</td>
+                                <td>@product.Quantity</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="col-md-1 d-flex align-items-center">
+            <div class="divider"></div>
+        </div>
+
+        <!-- Sale Form Section -->
+        <div class="col-md-6 mb-4 p-4 border border-secondary rounded shadow-sm">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- Selected Items Display -->
+                <div class="form-group mb-4">
+                    <label>Selected Items:</label>
+                    <ul id="selectedItemsList" class="list-group mb-4">
+                        <!-- Selected items will appear here -->
+                    </ul>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Sale.Client" class="form-label"></label>
+                    <input asp-for="Sale.Client" class="form-control" />
+                    <span asp-validation-for="Sale.Client" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Sale.Description" class="form-label"></label>
+                    <input asp-for="Sale.Description" class="form-control" />
+                    <span asp-validation-for="Sale.Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Sale.Contact" class="form-label"></label>
+                    <input asp-for="Sale.Contact" class="form-control" />
+                    <span asp-validation-for="Sale.Contact" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Sale.TotalPrice" class="form-label"></label>
+                    <input asp-for="Sale.TotalPrice" id="totalPrice" class="form-control" readonly />
+                    <span asp-validation-for="Sale.TotalPrice" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Sale.CreationDate" class="form-label"></label>
+                    <input asp-for="Sale.CreationDate" class="form-control" />
+                    <span asp-validation-for="Sale.CreationDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <input type="submit" value="Sell" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="/Sales/Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    function updateTotalPrice() {
+        const selectedIcons = document.querySelectorAll('.item-icon.selected');
+        let total = 0;
+        const selectedItemsList = document.getElementById('selectedItemsList');
+        selectedItemsList.innerHTML = ''; // Clear the current list
+
+        selectedIcons.forEach(icon => {
+            const itemName = icon.getAttribute('data-name');
+            const itemPrice = parseFloat(icon.getAttribute('data-price'));
+            const quantity = parseInt(icon.getAttribute('data-quantity'), 10);
+            total += itemPrice * quantity;
+
+            // Create list item for each selected product
+            const listItem = document.createElement('li');
+            listItem.className = 'list-group-item';
+            listItem.textContent = `${itemName} - ${itemPrice.toFixed(2)} x ${quantity}`;
+            selectedItemsList.appendChild(listItem);
+        });
+
+        document.getElementById('totalPrice').value = total.toFixed(2); // Display total price
+    }
+
+    document.querySelectorAll('.item-icon').forEach(icon => {
+        icon.addEventListener('click', function () {
+            const availableQuantity = parseInt(this.getAttribute('data-available-quantity'), 10);
+            let quantity = parseInt(this.getAttribute('data-quantity'), 10);
+
+            if (this.classList.contains('selected')) {
+                // Increase quantity if already selected and quantity is less than available quantity
+                if (quantity < availableQuantity) {
+                    this.setAttribute('data-quantity', quantity + 1);
+                } else {
+                    alert(`Cannot add more than ${availableQuantity} of ${this.getAttribute('data-name')}`);
+                    return;
+                }
+            } else {
+                // Add new item with quantity 1
+                this.setAttribute('data-quantity', 1);
+                this.classList.add('selected');
+                this.style.color = '#28a745';
+            }
+
+            updateTotalPrice();
+        });
+    });
+
+    updateTotalPrice();
+</script>
+
+<style>
+    .table thead th {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-group input {
+        border-radius: 0.25rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    /* Custom spacing */
+    .mb-4 {
+        margin-bottom: 2rem !important;
+    }
+
+    .p-4 {
+        padding: 2rem !important;
+    }
+
+    /* Divider styles */
+    .divider {
+        height: 100%;
+        width: 1px;
+        background-color: #ddd;
+        margin: 0 1rem;
+    }
+</style>

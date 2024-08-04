@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Sales_Web.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Products</h1>
+        <a class="btn btn-primary" asp-action="Create"> New Product</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered w-100">
+            <thead class="table-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UnitPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Active)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="padding-right: 120px;">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td style="padding-right: 120px;">
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </td>
+                        <td style="padding-right: 120px;">
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td style="padding-right: 120px;">
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+                        <td>
+                            <a class="btn btn-icon" asp-action="Edit" asp-route-id="@item.Id" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-icon" asp-action="Details" asp-route-id="@item.Id" title="Details">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                            <a class="btn btn-icon" asp-action="Delete" asp-route-id="@item.Id" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .btn-icon {
+        background-color: #f0f0f0; /* Color gris claro */
+        color: #333; /* Color de los iconos */
+        border: none; /* Elimina el borde del botón */
+        padding: 8px; /* Ajusta el relleno si es necesario */
+        border-radius: 4px; /* Bordes redondeados */
+        font-size: 16px; /* Tamaño de fuente de los iconos */
+        margin: 0 2px; /* Espaciado entre los botones */
+    }
+
+        .btn-icon:hover {
+            background-color: #e0e0e0; /* Color gris más oscuro al pasar el mouse */
+        }
+</style>
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

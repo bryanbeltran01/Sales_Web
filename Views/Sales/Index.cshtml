@@ -1,0 +1,238 @@
+﻿@model IEnumerable<Sales_Web.Models.Sale>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-4">Accounting</h1>
+   @*      <a class="btn btn-primary" asp-action="Create">Create New</a> *@
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="sales-tab" data-bs-toggle="tab" href="#sales" role="tab" aria-controls="sales" aria-selected="true">Sales Paid</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="another-tab" data-bs-toggle="tab" href="#another" role="tab" aria-controls="another" aria-selected="false">Unpaid Sales</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <!-- Paid Sales Table -->
+        <div class="tab-pane fade show active" id="sales" role="tabpanel" aria-labelledby="sales-tab">
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Client)</th>
+                            <th>@Html.DisplayNameFor(model => model.Description)</th>
+                            <th>@Html.DisplayNameFor(model => model.Contact)</th>
+                            <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
+                            <th>@Html.DisplayNameFor(model => model.CreationDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.PaidDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsPaid)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Where(x => x.IsPaid))
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Client)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Contact)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CreationDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PaidDate)</td>
+                                <td>
+                                    @if (item.IsPaid)
+                                    {
+                                        <i class="fas fa-check text-success"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-times text-danger"></i>
+                                    }
+                                </td>
+                                <td>
+                                    <a class="btn btn-icon" href="#"
+                                       data-client="@item.Client"
+                                       data-description="@item.Description"
+                                       data-contact="@item.Contact"
+                                       data-totalprice="@item.TotalPrice"
+                                       data-creationdate="@item.CreationDate.ToString("MM/dd/yyyy")"
+                                       data-paiddate="@item.PaidDate?.ToString("MM/dd/yyyy")"
+                                       data-ispaid="@item.IsPaid"
+                                       data-id="@item.Id"
+                                       onclick="showDetails(this)"
+                                       title="Details">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    <a class="btn btn-icon" asp-action="Edit" asp-route-id="@item.Id" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-icon" asp-action="Delete" asp-route-id="@item.Id" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Unpaid Sales Table -->
+        <div class="tab-pane fade" id="another" role="tabpanel" aria-labelledby="another-tab">
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Client)</th>
+                            <th>@Html.DisplayNameFor(model => model.Description)</th>
+                            <th>@Html.DisplayNameFor(model => model.Contact)</th>
+                            <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
+                            <th>@Html.DisplayNameFor(model => model.CreationDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.PaidDate)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsPaid)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Where(x => !x.IsPaid))
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Client)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Contact)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CreationDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PaidDate)</td>
+                                <td>
+                                    @if (item.IsPaid)
+                                    {
+                                        <i class="fas fa-check text-success"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-times text-danger"></i>
+                                    }
+                                </td>
+                                <td>
+                                    <a class="btn btn-icon" href="#"
+                                       data-client="@item.Client"
+                                       data-description="@item.Description"
+                                       data-contact="@item.Contact"
+                                       data-totalprice="@item.TotalPrice"
+                                       data-creationdate="@item.CreationDate.ToString("MM/dd/yyyy")"
+                                       data-paiddate="@item.PaidDate?.ToString("MM/dd/yyyy")"
+                                       data-ispaid="@item.IsPaid"
+                                       data-id="@item.Id"
+                                       onclick="showDetails(this)"
+                                       title="Details">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    <a class="btn btn-icon" asp-action="Edit" asp-route-id="@item.Id" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-icon" asp-action="Delete" asp-route-id="@item.Id" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Sale Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Client:</strong> <span id="modalClient"></span></p>
+                <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+                <p><strong>Contact:</strong> <span id="modalContact"></span></p>
+                <p><strong>Total Price:</strong> <span id="modalTotalPrice"></span></p>
+                <p><strong>Creation Date:</strong> <span id="modalCreationDate"></span></p>
+                <p><strong>Paid Date:</strong> <span id="modalPaidDate"></span></p>
+                <p><strong>Is Paid:</strong> <span id="modalIsPaid"></span></p>
+                <a id="editButton" class="btn btn-primary" href="#" style="display:none;">Edit</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-icon {
+        background-color: #f0f0f0;
+        color: #333;
+        border: none;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 16px;
+        margin: 0 2px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .btn-icon:hover {
+            background-color: #e0e0e0;
+        }
+</style>
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showDetails(element) {
+            // Get data attributes
+            var client = $(element).data('client');
+            var description = $(element).data('description');
+            var contact = $(element).data('contact');
+            var totalPrice = $(element).data('totalprice');
+            var creationDate = $(element).data('creationdate');
+            var paidDate = $(element).data('paiddate');
+            var isPaid = $(element).data('ispaid');
+            var id = $(element).data('id');
+
+            // Populate modal with data
+            $('#modalClient').text(client);
+            $('#modalDescription').text(description);
+            $('#modalContact').text(contact);
+            $('#modalTotalPrice').text(totalPrice);
+            $('#modalCreationDate').text(creationDate);
+            $('#modalPaidDate').text(paidDate || 'N/A');
+            $('#modalIsPaid').html(isPaid ? '<i class="fas fa-check text-success"></i> Paid' : '<i class="fas fa-times text-danger"></i> Not Paid');
+
+            // Set the edit button URL
+            var editButton = $('#editButton');
+            editButton.attr('href', '/Sales/Edit/' + id); // Adjust the URL as needed
+            editButton.show(); // Show the edit button
+
+            // Show the modal
+            var myModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            myModal.show();
+        }
+    </script>
+}

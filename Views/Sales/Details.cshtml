@@ -1,0 +1,65 @@
+﻿@model Sales_Web.Models.Sale
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Sale Details</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="mb-0">Sale Information</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Client)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Client)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Contact)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Contact)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.TotalPrice)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TotalPrice)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.CreationDate)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.PaidDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.PaidDate)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.IsPaid)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.IsPaid)
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+            <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>

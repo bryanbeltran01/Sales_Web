@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the sales control system</h1>
+
+
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <!-- Logo con fondo transparente -->
+        <div class="logo-container">
+            <img src="~/seller.png" alt="Imagen de muestra" width="900" height="400">
+        </div>
+        <p>
+            Hello @User.Identity.Name, <a href="Identity/Account/Logout" class="btn btn-primary">Logout</a>.
+        </p>
+        <div class="user-info">
+            <!-- Show user-specific information here -->
+        </div>
+    }
+    else
+    {
+
+
+        <!-- Logo con fondo transparente -->
+        <div class="logo-container">
+            <img src="~/pos.png" alt="Logo" class="logo">
+        </div>
+        <p>
+            To begin, please. <a href="/Identity/Account/Login" class="btn btn-primary">Login</a>.
+        </p>
+    }
+</div>
+
+<style>
+    .logo-container {
+        margin: 20px 0;
+    }
+
+    .logo {
+        width: 300px; /* Ancho del logo */
+        height: 300px; /* Alto del logo */
+        object-fit: contain; /* Mantiene las proporciones si la imagen no es cuadrada */
+        opacity: 0.8; /* Ajusta la opacidad si es necesario */
+    }
+
+    .user-info {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+</style>
