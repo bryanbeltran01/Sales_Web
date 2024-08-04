@@ -1,5 +1,4 @@
 
-<![endif]-->
 
 # Sistema de Administración del Control de Ventas
 
