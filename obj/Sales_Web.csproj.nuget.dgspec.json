@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bryan\\source\\repos\\Sales_Web\\Sales_Web.csproj": {}
+    "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\Sales_Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bryan\\source\\repos\\Sales_Web\\Sales_Web.csproj": {
+    "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\Sales_Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bryan\\source\\repos\\Sales_Web\\Sales_Web.csproj",
+        "projectUniqueName": "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\Sales_Web.csproj",
         "projectName": "Sales_Web",
-        "projectPath": "C:\\Users\\Bryan\\source\\repos\\Sales_Web\\Sales_Web.csproj",
+        "projectPath": "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\Sales_Web.csproj",
         "packagesPath": "C:\\Users\\Bryan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bryan\\source\\repos\\Sales_Web\\obj\\",
+        "outputPath": "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bryan\\AppData\\Roaming\\NuGet\\NuGet.Config",
