@@ -38,6 +38,8 @@ Administración de inventario.
 
 Gestión de Usuarios
 
+Diseño Responsivo
+
 ## Instalación
 
 Sigue estos pasos para instalar el proyecto:

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZNHtadAvpV20QJToDjLp8RvkW3AwSRkTUa/88Wvlx7c=",
+  "Hash": "lCV3HpfPKQDCbBtGHQYhWk29tCti+D0iUL6WYx1U/p0=",
   "Source": "Sales_Web",
   "BasePath": "_content/Sales_Web",
   "Mode": "Default",
@@ -2409,6 +2409,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user-profile.png"
+    },
+    {
+      "Identity": "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\wwwroot\\Web_sale.gif",
+      "SourceId": "Sales_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\wwwroot\\",
+      "BasePath": "_content/Sales_Web",
+      "RelativePath": "Web_sale.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Web_sale.gif"
     }
   ]
 }

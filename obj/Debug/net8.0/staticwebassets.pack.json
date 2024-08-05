@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Sales_Web.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\wwwroot\\Web_sale.gif",
+      "PackagePath": "staticwebassets\\Web_sale.gif"
+    },
+    {
       "Id": "C:\\Users\\Bryan\\Desktop\\POS\\Sales_Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -8,81 +8,33 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Sales_Web.styles.css" asp-append-version="true" />
     <style>
-        body {
-            padding-top: 56px; /* Ajusta el espacio para el navbar fijo */
-        }
-
-        .sidebar {
-            height: 100vh; /* Altura completa de la ventana */
-            position: fixed; /* Fijo en la pantalla */
-            top: 0;
-            left: 0;
-            width: 250px; /* Ancho del sidebar */
-            background-color: #495057; /* Color de fondo del sidebar */
-            border-right: 1px solid #ddd; /* Borde derecho del sidebar */
-            padding-top: 20px; /* Espacio superior dentro del sidebar */
-        }
-
-            .sidebar .greeting {
-                color: #fff; /* Color del texto: blanco */
-                text-align: center; /* Centrar el texto horizontalmente */
-                font-size: 1.2rem; /* Tamaño de fuente del texto: 4.2 rem */
-                margin-bottom: 10px; /* Espacio debajo del texto: 10 píxeles */
-            }
-
-
-            .sidebar .avatar {
-                width: 100px; /* Ancho del avatar */
-                height: 100px; /* Alto del avatar */
-                border-radius: 50%; /* Hacer la imagen redonda */
-                display: block;
-                margin: 0 auto; /* Centrar el avatar */
-                border: 2px solid #ddd; /* Borde alrededor del avatar */
-                object-fit: cover; /* Ajustar la imagen para que no se deforme */
-            }
-
-            .sidebar .nav {
-                margin-top: 20px; /* Espacio debajo del avatar */
-            }
-
-        .main-content {
-            margin-left: 300px; /* Espacio para el sidebar */
-            padding: 20px; /* Espacio dentro del contenido principal */
-        }
-
-        footer {
-            border-top: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
+    
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Sales_Web</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                                 <i class="fas fa-home"></i>
                             </a>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Sales" asp-action="Index">Accountig</a>
+                            <a class="nav-link" asp-area="" asp-controller="Sales" asp-action="Index">Accounting</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Sales" asp-action="Create">Sales Requests</a>
-
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                         </li>
-                        
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
                         </li>
@@ -95,32 +47,26 @@
 
     <div class="d-flex">
         <nav class="sidebar">
-            <br />    <br />  <br />
+            <br /><br /><br />
             <p class="greeting">Welcome</p> <!-- Párrafo que dice "Hola" -->
             <img src="~/user-profile.png" alt="User Avatar" class="avatar" />
             <ul class="nav flex-column">
                 <!-- Agrega más enlaces aquí según sea necesario -->
             </ul>
 
-
             @if (User.Identity.IsAuthenticated)
             {
-                <br /> <br /> <br />
+                <br /><br /><br />
                 <a href="/Identity/Account/Manage" class="d-block bg-secondary text-light p-3 rounded text-decoration-none">
                     <p class="greeting mb-0">
                         <i class="fas fa-user"></i> Profile
                     </p>
                 </a>
-
-
             }
             else
             {
-             
+                <!-- Contenido para usuarios no autenticados -->
             }
-
-           
-
         </nav>
 
         <div class="main-content">

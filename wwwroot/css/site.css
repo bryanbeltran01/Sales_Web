@@ -20,3 +20,63 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+body {
+    padding-top: 56px; /* Ajusta el espacio para el navbar fijo */
+}
+
+.sidebar {
+    height: 100vh; /* Altura completa de la ventana */
+    position: fixed; /* Fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 250px; /* Ancho del sidebar */
+    background-color: #495057; /* Color de fondo del sidebar */
+    border-right: 1px solid #ddd; /* Borde derecho del sidebar */
+    padding-top: 20px; /* Espacio superior dentro del sidebar */
+    display: block; /* Por defecto, mostrar el sidebar */
+}
+
+    .sidebar .greeting {
+        color: #fff; /* Color del texto: blanco */
+        text-align: center; /* Centrar el texto horizontalmente */
+        font-size: 1.2rem; /* Tamaño de fuente del texto: 4.2 rem */
+        margin-bottom: 10px; /* Espacio debajo del texto: 10 píxeles */
+    }
+
+    .sidebar .avatar {
+        width: 100px; /* Ancho del avatar */
+        height: 100px; /* Alto del avatar */
+        border-radius: 50%; /* Hacer la imagen redonda */
+        display: block;
+        margin: 0 auto; /* Centrar el avatar */
+        border: 2px solid #ddd; /* Borde alrededor del avatar */
+        object-fit: cover; /* Ajustar la imagen para que no se deforme */
+    }
+
+    .sidebar .nav {
+        margin-top: 20px; /* Espacio debajo del avatar */
+    }
+
+.main-content {
+    margin-left: 250px; /* Espacio para el sidebar */
+    padding: 20px; /* Espacio dentro del contenido principal */
+}
+
+/* Ocultar el sidebar en pantallas pequeñas */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none; /* Ocultar el sidebar en pantallas pequeñas */
+    }
+
+    .main-content {
+        margin-left: 0; /* Eliminar el espacio para el sidebar en pantallas pequeñas */
+    }
+}
+
+footer {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
